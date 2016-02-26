@@ -6,6 +6,8 @@ import (
 
 const MacBookMac = `6c:40:08:b2:1b:a4`
 const OnePlusOneMac = `C0EEFB3368FA`
+const RandomMac1 = `C2EEFB3368FA`
+const RandomMac2 = `6e:40:08:b2:1b:a4`
 
 func TestLookup(t *testing.T) {
 	Init()
@@ -17,6 +19,14 @@ func TestLookup(t *testing.T) {
 	OnePlusVendorString := Lookup(OnePlusOneMac)
 	if OnePlusVendorString != "OnePlus Tech (Shenzhen) Ltd" {
 		t.Errorf("Error looking up OnePlus Mac. %v", OnePlusVendorString)
+	}
+
+	if Lookup(RandomMac1) != "Random" {
+		t.Errorf("Error looking up Random Mac. 1")
+	}
+
+	if Lookup(RandomMac2) != "Random" {
+		t.Errorf("Error looking up Random Mac. 2")
 	}
 
 }

@@ -6,6 +6,7 @@ import (
 	"github.com/c0ze/golang-utils"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -26,6 +27,7 @@ func readLines(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 
+var randomMac = regexp.MustCompile(`^([A-F0-9][2,6,A,E][A-F0-9]*)$`)
 var VendorMap map[string]string
 
 func Init() {
@@ -54,5 +56,13 @@ func Init() {
 }
 
 func Lookup(mac string) string {
-	return VendorMap[utils.StripColon(mac)[0:6]]
+	vendor := VendorMap[utils.StripColon(mac)[0:6]]
+	if vendor == "" {
+		if randomMac.MatchString(utils.StripColon(mac)) {
+			vendor = "Random"
+		} else {
+			vendor = "Unknown"
+		}
+	}
+	return vendor
 }
