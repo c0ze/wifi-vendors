@@ -56,13 +56,22 @@ func Init() {
 }
 
 func Lookup(mac string) string {
-	vendor := VendorMap[utils.StripColon(mac)[0:6]]
-	if vendor == "" {
-		if randomMac.MatchString(utils.StripColon(mac)) {
-			vendor = "Random"
-		} else {
-			vendor = "Unknown"
+	vendor := ""
+
+	sanitizedMac := utils.StripColon(mac)
+
+	if len(sanitizedMac) > 5 {
+		vendor = VendorMap[sanitizedMac[0:6]]
+		if vendor == "" {
+			if randomMac.MatchString(utils.StripColon(mac)) {
+				vendor = "Random"
+			} else {
+				vendor = "Unknown"
+			}
 		}
+	} else {
+		vendor = "Malformed"
 	}
+
 	return vendor
 }

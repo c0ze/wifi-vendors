@@ -29,4 +29,11 @@ func TestLookup(t *testing.T) {
 		t.Errorf("Error looking up Random Mac. 2")
 	}
 
+	if Lookup("") != "Malformed" {
+		t.Errorf("Error looking up empty string %v", Lookup(""))
+	}
+
+	if Lookup("dummy") != "Malformed" {
+		t.Errorf("Error looking up dummy string")
+	}
 }
