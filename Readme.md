@@ -1,7 +1,7 @@
 ### Wifi mac vendors
 
 A basic lib which parses a mac address and displays associated vendor.
-You need to download [oui.txt](standards-oui.ieee.org/oui.txt) from IEEE. You can place it either in the current directory or under /etc
+You need to download [oui.txt](http://standards-oui.ieee.org/oui.txt) from IEEE. You can place it either in the current directory or under /etc
 
 You will get either
 
