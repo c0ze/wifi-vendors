@@ -38,7 +38,7 @@ func Init() {
 	if err != nil {
 		lines, err = readLines("oui.txt")
 		if err != nil {
-			log.Fatalf("readLines: %s", err)
+			log.Println("readLines: %s", err)
 			return
 		}
 	}
