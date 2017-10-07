@@ -9,3 +9,5 @@ You will get either
 * the string `Random` when the address is in Locally Administered Space
 * the string `Unknown` if it's not either in the Oui or Locally Administered Space
 * the string `Malformed` if it's not a good Mac address (I should have made a good regexp for this, in this case it only checks if it's not empty string or has less than 6 chars.)
+
+### [DOCS](https://godoc.org/github.com/c0ze/wifi-vendors)
