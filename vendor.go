@@ -28,8 +28,12 @@ func readLines(path string) ([]string, error) {
 }
 
 var randomMac = regexp.MustCompile(`^([A-F0-9][2,6,A,E][A-F0-9]*)$`)
+
+// VendorMap holds the Mac address -> Vendor name mapping
 var VendorMap map[string]string
 
+// Inits Wifi vendors.
+// You must call this function once before performing any look ups.
 func Init() {
 	VendorMap = make(map[string]string)
 	var lines []string
@@ -56,6 +60,10 @@ func Init() {
 	}
 }
 
+// Lookup function returns the vendor string matched from oui.txt.
+// If the mac address is in random space, it will return Random.
+// If the vendor is not in oui, it returns Unknown (you may want to update oui in this case).
+// If the mac address is invalid, it returns Malformed.
 func Lookup(mac string) string {
 	vendor := ""
 
